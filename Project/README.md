@@ -3,7 +3,7 @@
 ## The architecture
 
 <!--add an image in this path-->
-![architecture](../images/streamlit4.png)
+![architecture](../images/streamlit.png)
 
 <!--Optionally, add flow steps based on the architecture diagram-->
 ## Flow
