@@ -2,11 +2,13 @@
 
 ## Folder Structure
 ```bash
-├── LICENSE
 ├── Notebooks
+│   └── README.md
 ├── Project
 │   ├── Dockerfile
 │   ├── README.md
+│   ├── SETUP.md
+│   ├── ai_platform_command.txt
 │   ├── app.py
 │   ├── app.yaml
 │   ├── helper.py
@@ -14,9 +16,12 @@
 │   ├── model.joblib
 │   ├── requirements-test.txt
 │   └── requirements.txt
-├── README.md
 ├── images
+│   ├── streamlit.png
 │   ├── streamlit4.png
+│   └── webapp.PNG
+├── LICENSE
+├── README.md
 └── requirements.txt
 ```
 ### Notebooks
@@ -28,7 +33,7 @@ See [Project](Project/README.md) for details on how to run locally or in GCP
 ## The architecture
 
 <!--add an image in this path-->
-![architecture](images/streamlit4.png)
+![architecture](images/streamlit.png)
 
 <!--Optionally, add flow steps based on the architecture diagram-->
 ## Flow
