@@ -47,6 +47,6 @@
 ###  The architecture
 
 <!--add an image in this path-->
-![architecture](../images/streamlit4.png)
+![architecture](../images/streamlit.png)
 
 *[Check here](https://cloud.google.com/appengine/docs/flexible/custom-runtimes/build)*
