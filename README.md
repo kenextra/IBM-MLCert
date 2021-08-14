@@ -23,7 +23,7 @@
 Please open [Notebooks](Notebooks/README.md) for jupyter notebooks used for the coursera courses.
 
 ### Project
-See [Project](Notebooks/README.md) for details on how to run locally or in GCP
+See [Project](Project/README.md) for details on how to run locally or in GCP
 
 ## The architecture
 
