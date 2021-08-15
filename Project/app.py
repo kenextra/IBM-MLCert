@@ -7,11 +7,10 @@ from helper import calculate_distance, prepare_data
 from streamlit_folium import folium_static
 # import time
 # import datetime
-# from datetime import datetime, date, time
+from datetime import datetime
+
 
 # Load model
-
-
 @st.cache(allow_output_mutation=True)
 def load_model():
     my_model = joblib.load('model.joblib')
@@ -25,7 +24,7 @@ st.markdown("<h1 style='text-align: center; color: black;'>New York City Map</h1
 
 st.sidebar.header('Taxi Trip Details')
 dt = st.sidebar.date_input('Date')
-tmd = st.sidebar.time_input('Time Of Day')
+tmd = st.sidebar.time_input('Time Of Day', value=datetime.now().time())
 
 # st.sidebar.subheader('Pickup Coordinates')
 st.sidebar.write("""#### Pickup Coordinates""")
@@ -76,19 +75,25 @@ data = pd.DataFrame({'latitude': [pick_lat, drop_lat, ],
 
 st.map(data=data, zoom=9)
 
-map_heatmap = folium.Map(location=[pick_lat, pick_long], zoom_start=11)
-st.subheader("Heatmap")
-folium_static(map_heatmap)
 
+# map_heatmap = folium.Map(location=[pick_lat, pick_long], zoom_start=11)
+# st.subheader("Heatmap")
+# folium_static(map_heatmap)
+
+st.write("\n\n")
+st.markdown("<h3 style='text-align: center; color: black;'>Data supplied by user for prediction</h3>",
+            unsafe_allow_html=True)
 cols1 = ['time_of_day', 'day_of_week', 'dayofmonth', 'dayofyear', ]
 cols2 = ['longitude', 'latitude', 'dist', 'trip_distance', ]
-st.dataframe(prepared_data[cols1], width=None, height=None)
-st.dataframe(prepared_data[cols2], width=None, height=None)
+st.table(prepared_data[cols1], )
+st.table(prepared_data[cols2], )
 
 # Select coordinates
 _, col2, _ = st.beta_columns([1, 3, 2])
 with col2:
     st.dataframe(data)
+
+# st.table(data)
 
 _, col2, _ = st.beta_columns(3)
 with col2:

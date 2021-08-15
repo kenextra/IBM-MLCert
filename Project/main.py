@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
-import folium
 import os
+from datetime import datetime
+
 from helper import calculate_distance, prepare_data
-from streamlit_folium import folium_static
 from dotenv import load_dotenv
 
 from googleapiclient import discovery
@@ -29,10 +29,7 @@ def make_prediction(data):
                                           body={'instances': instances}
                                           ).execute()
 
-    if 'error' in response:
-        # print(response['error'])
-        return response
-    return response['predictions'][0]
+    return response
 
 
 # st.title("""New York City Map""")
@@ -40,7 +37,7 @@ st.markdown("<h1 style='text-align: center; color: black;'>New York City Map</h1
 
 st.sidebar.header('Taxi Trip Details')
 dt = st.sidebar.date_input('Date')
-tmd = st.sidebar.time_input('Time Of Day')
+tmd = st.sidebar.time_input('Time Of Day', value=datetime.now().time())
 
 # st.sidebar.subheader('Pickup Coordinates')
 st.sidebar.write("""#### Pickup Coordinates""")
@@ -60,13 +57,8 @@ drop_long = st.sidebar.number_input('Longitude', min_value=-74.1923,
 
 
 dist1, dist2, dist3 = calculate_distance((pick_lat, pick_long), (drop_lat, drop_long))
-# st.sidebar.write("""#### Distance (miles)""")
-# st.sidebar.write(f"{dist1} miles")
-# st.sidebar.write(f"{dist2} miles")
-# st.sidebar.write(f"{dist3} miles")
 
 st.sidebar.number_input('Distance (miles)', value=dist1)
-# st.sidebar.header('Trip Duration')
 
 passenger = st.sidebar.number_input('Passenger Count', min_value=1,
                                     max_value=9, step=1, value=1)
@@ -80,9 +72,13 @@ prepared_data = prepare_data((pick_lat, pick_long), (drop_lat, drop_long),
                              dist1, dt, tmd, passenger, )
 with col2:
     if duration:
-        dur = make_prediction(prepared_data)
-        st.write(f"{dur:.2f} +/- 4.00 minutes")
-        # st.write(dur)
+        response = make_prediction(prepared_data)
+        if 'error' in response:
+            st.write(response)
+        else:
+            dur = response['predictions'][0]
+            st.write(f"{dur:.2f} +/- 4.00 minutes")
+
 
 # Plot Map
 data = pd.DataFrame({'latitude': [pick_lat, drop_lat, ],
@@ -92,14 +88,13 @@ data = pd.DataFrame({'latitude': [pick_lat, drop_lat, ],
 
 st.map(data=data, zoom=9)
 
-map_heatmap = folium.Map(location=[pick_lat, pick_long], zoom_start=11)
-st.subheader("Heatmap")
-folium_static(map_heatmap)
-
+st.write("\n\n")
+st.markdown("<h3 style='text-align: center; color: black;'>Data supplied by user for prediction</h3>",
+            unsafe_allow_html=True)
 cols1 = ['time_of_day', 'day_of_week', 'dayofmonth', 'dayofyear', ]
 cols2 = ['longitude', 'latitude', 'dist', 'trip_distance', ]
-st.dataframe(prepared_data[cols1], width=None, height=None)
-st.dataframe(prepared_data[cols2], width=None, height=None)
+st.table(prepared_data[cols1], )
+st.table(prepared_data[cols2], )
 
 # Select coordinates
 _, col2, _ = st.beta_columns([1, 3, 2])
