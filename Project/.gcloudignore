@@ -25,9 +25,10 @@ Pipfile.lock
 
 .vscode/*
 .venv/
-model.pkl
 model.joblib
 app.py
-webapp.PNG
 requirements-test.txt
 ai_platform_command.txt
+*.ipynb
+import_dataset.py
+*.md
