@@ -2,26 +2,49 @@
 
 ## Folder Structure
 ```bash
+.
+├── LICENSE
 ├── Notebooks
-│   └── README.md
+│   ├── Course Reports
+│   │   ├── Deep Learning and Reinforcement Learning.pdf
+│   │   ├── Exploratory Data Analysis for Machine Learning.pdf
+│   │   ├── Specialized Models Time Series and Survival Analysis.pdf
+│   │   ├── Supervised Machine Learning Classification.pdf
+│   │   ├── Supervised Machine Learning Regression.pdf
+│   │   └── Unsupervised Machine Learning.pdf
+│   ├── Deep_Learning_and_Reinforcement_Learning.ipynb
+│   ├── Exploratory_Data_Analysis_for_Machine_Learning.ipynb
+│   ├── README.md
+│   ├── Specialized_Models_Time_Series_and_Survival_Analysis.ipynb
+│   ├── Supervised_Machine_Learning_Classification.ipynb
+│   ├── Supervised_Machine_Learning_Regression.ipynb
+│   ├── Unsupervised_Machine_Learning.ipynb
+│   ├── colorsetup.py
+│   ├── import_dataset.py
+│   ├── pickupLocations.csv
+│   └── taxiPickups.csv
 ├── Project
+│   ├── Build_Model.ipynb
 │   ├── Dockerfile
 │   ├── README.md
 │   ├── SETUP.md
 │   ├── ai_platform_command.txt
 │   ├── app.py
 │   ├── app.yaml
+│   ├── cloudrun.txt
 │   ├── helper.py
+│   ├── import_dataset.py
 │   ├── main.py
 │   ├── model.joblib
 │   ├── requirements-test.txt
 │   └── requirements.txt
+├── README.md
+├── Webservice_Deploy_Diagram.ipynb
 ├── images
+│   ├── CloudRunStreamlit.png
 │   ├── streamlit.png
 │   ├── streamlit4.png
 │   └── webapp.PNG
-├── LICENSE
-├── README.md
 └── requirements.txt
 ```
 ### Notebooks
@@ -33,7 +56,7 @@ See [Project](Project/README.md) for details on how to run locally or in GCP
 ## The architecture
 
 <!--add an image in this path-->
-![architecture](images/streamlit.png)
+![architecture](images/CloudRunStreamlit.png)
 
 <!--Optionally, add flow steps based on the architecture diagram-->
 ## Flow

@@ -47,6 +47,6 @@
 ###  The architecture
 
 <!--add an image in this path-->
-![architecture](../images/streamlit.png)
+![architecture](../images/CloudRunStreamlit.png)
 
-*[Check here](https://cloud.google.com/appengine/docs/flexible/custom-runtimes/build)*
+**[Build and deploy a Python service](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/python?hl=en)**
