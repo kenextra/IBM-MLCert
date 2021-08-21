@@ -1,5 +1,9 @@
-gcloud config get-value project
+export PROJECT-ID = $(gcloud config get-value project)
+export IMAGE_NAME = ""
 
-gcloud builds submit --tag gcr.io/PROJECT-ID/helloworld
+# Build image
+gcloud builds submit --tag gcr.io/$PROJECT-ID/$IMAGE_NAME
 
-gcloud run deploy --image gcr.io/PROJECT-ID/helloworld
+# Deploy to cloud run
+gcloud run deploy --image gcr.io/$PROJECT-ID/$IMAGE_NAME
+
