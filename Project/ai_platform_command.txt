@@ -1,0 +1,24 @@
+export PROJECT_ID=""
+export MODEL_PATH=""
+export MODEL_NAME=""
+export VERSION_NAME=v1
+export REGION=us-central1
+
+gcloud config set project $PROJECT_ID
+
+
+# create a container that can hold several different versions of your actual model.
+gcloud ai-platform models create $MODEL_NAME --region $REGION
+
+# Run the following to upload your model to your container:
+gcloud beta ai-platform versions create $VERSION_NAME \
+    --model $MODEL_NAME \
+    --origin $MODEL_PATH \
+    --runtime-version="2.4" \
+    --framework="SCIKIT_LEARN" \
+    --python-version="3.7" \
+    --region=$REGION
+
+
+# Confirm your model's deployment with the following command:
+gcloud ai-platform versions list --model $MODEL_NAME --region $REGION

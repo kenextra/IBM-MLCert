@@ -131,4 +131,3 @@ dmypy.json
 # vscode
 .vscode/*
 Project/model.joblib
-Project/ai_platform_command.txt
